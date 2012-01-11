@@ -8,6 +8,10 @@ config.init({
     files: ["build/config.js", "app/modules/*.js"]
   },
 
+  brew_coffee: {
+    "app/modules/": "app/modules-coffee/"
+  },
+
   concat: {
 
     // The core library files
@@ -23,7 +27,7 @@ config.init({
     // Your CSS
     "dist/debug/css/style.css": ["assets/css/*.css"]
   },
-  
+
   jst: {
     "dist/debug/js/templates.js": ["app/templates/*.html"]
   },
@@ -45,6 +49,11 @@ config.init({
     min: {
       files: ["assets/**/*", "app/**/*"],
       tasks: "default"
+    },
+
+    coffee: {
+      files: ["assets/**/*", "app/**/*"],
+      tasks: "brew_coffee concat jst"
     }
   },
 
