@@ -9,7 +9,8 @@ config.init({
   },
 
   brew_coffee: {
-    "app/modules/": "app/modules-coffee/"
+    "app/modules/": { src: "app/modules-coffee/", option: "-c" },
+    "spec/compiled/specs.js": { src: "spec/coffeescript/**/*spec.coffee", option: "--join" }
   },
 
   concat: {
@@ -21,15 +22,23 @@ config.init({
       "assets/js/libs/backbone.js"
     ],
 
+    "spec/compiled/libs.js": [
+      "assets/js/libs/jquery.js",
+      "assets/js/libs/underscore.js",
+      "assets/js/libs/backbone.js"
+    ],
+
     // Application files
     "dist/debug/js/app.js": ["app/*.js", "app/modules/*.js"],
+    "spec/compiled/app.js": ["app/*.js", "app/modules/*.js"],
 
     // Your CSS
     "dist/debug/css/style.css": ["assets/css/*.css"]
   },
 
   jst: {
-    "dist/debug/js/templates.js": ["app/templates/*.html"]
+    "dist/debug/js/templates.js": ["app/templates/*.html"],
+    "spec/compiled/templates.js": ["app/templates/*.html"]
   },
 
   min: {
@@ -52,7 +61,7 @@ config.init({
     },
 
     coffee: {
-      files: ["assets/**/*", "app/**/*"],
+      files: ["spec/coffeescript/**/*", "assets/**/*", "app/**/*"],
       tasks: "brew_coffee concat jst"
     }
   },
